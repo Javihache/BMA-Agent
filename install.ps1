@@ -312,7 +312,7 @@ function InstallPM2Installer()
 function ConfirmUninstallNodeJS()
 {
 
-    $title = 'Braiins Manager Agent Uninstaller'
+    $title = 'Braiins Manager Agent Cleanup'
     $question = "Would you like to remove NodeJS from your system?"
     $choices = '&Yes', '&No'
     $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
@@ -333,7 +333,7 @@ function ConfirmUninstallNodeJS()
 function ConfirmUninstallpm2installer()
 {
 
-    $title = 'Braiins Manager Agent Uninstaller'
+    $title = 'Braiins Manager Agent Cleanup'
     $question = "Would you like to remove pm2-installer from your system?
     pm2-installer manages pm2 and helps the Braiins Manager Agent process to start on boot.
     If you still have other Braiins Manager Agent instances running, you should choose 'no'"
