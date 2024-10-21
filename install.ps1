@@ -157,6 +157,9 @@ function InstallBraiinsManagerAgent()
     #Select folder and install the files
     if (-NOT (Test-Path -Path $installationFolder)) {
         Info "Braiins Manager Agent will be installed in $installationFolder"
+        New-Item -Path $installationFolder -ItemType Directory | Out-Null
+        cd $installationFolder
+
     } else {
         while ($true) {
             # Prompt the user for the installation folder
@@ -204,6 +207,7 @@ function InstallBraiinsManagerAgent()
     # Proceed with the rest of the script
     Write-Host "Proceeding with installation in folder: $installationFolder"
     Create_Env_File
+    cd $installationFolder
     $distZipfile = Join-Path -Path $installationFolder -ChildPath krater-node.zip
     Invoke-WebRequest -Uri https://braiinspublic.blob.core.windows.net/agent/dist.zip  -OutFile $distZipfile
     Expand-Archive -path $distZipfile -DestinationPath $installationFolder -Force
