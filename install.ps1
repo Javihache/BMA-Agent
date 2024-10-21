@@ -155,7 +155,7 @@ function InstallBraiinsManagerAgent()
         exit 1
     }
     #Select folder and install the files
-    if (-NOT Test-Path -Path $installationFolder) {
+    if (-NOT (Test-Path -Path $installationFolder)) {
         Info "Braiins Manager Agent will be installed in $installationFolder"
     } else {
         while ($true) {
