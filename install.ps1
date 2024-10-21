@@ -2,6 +2,51 @@ $curDir = Get-Location
 $pm2InstallerFolder = "C:\Program Files\pm2-installer"
 $pm2InstallerZipfile = "$HOME\Downloads\pm2-installer.zip"
 
+# Define text color variables
+# $RED = "Red"
+# $GREEN = "Green"
+# $YELLOW = "Yellow"
+# $BLUE = "Blue"
+
+function Message {
+    param (
+        [string]$Color,          # The color to use
+        [string]$Message         # The message to display
+    )
+
+    Write-Host $Message -ForegroundColor $Color
+}
+
+# Define specific functions for each log level
+function Info {
+    param (
+        [string]$Message
+    )
+    Message "Green" $Message
+}
+
+function Warning {
+    param (
+        [string]$Message
+    )
+    Message "Yellow" $Message
+}
+
+function Error {
+    param (
+        [string]$Message
+    )
+    Message "Red" $Message
+}
+
+function Debug {
+    param (
+        [string]$Message
+    )
+    Message "Blue" $Message
+}
+
+
 function ConfirmInstallation()
 {
     $title = 'Braiins Manager Agent Installer'
@@ -18,12 +63,12 @@ Please confirm that you understand this script and you wish to proceed."
     $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
     if ($decision -eq 0)
     {
-        Write-Host 'Proceeding with installation'-ForegroundColor Green
+        Info "Proceeding with installation"
         InstallBraiinsManagerAgent
     }
     else
     {
-        Write-Host 'Ok. Exiting...'-ForegroundColor Red
+        Error 'Ok. Exiting...'
         Start-Sleep -Seconds 1
         exit
     }
